@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <header th:replace="header :: header"></header>
+</head>
+<body>
+    <div  class="page-holder w-100 d-flex flex-wrap">
+        <div class="kontainer">
+            <section class="py-custom">
+                <div class="row">
+                    <!-- Basic Form-->
+                    <div class="col-nopad2">
+                        <div  class="profile">
+                            <img th:src="@{/img/12.jpg}" alt="Avatar" style="max-width: 30rem;max-height: 422px" class="img-profile img-fluid col-nopad2 shadow">
+                            <p><h4 class="centered-bottom text-success">Amry Ramadhan Prasetya</h4></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 no-padding">
+                        <div >
+                            <div id="FixedHeightContainer" class="card-body FixedHeightContainer">
+                                <div class="header">
+                                    <div class="progress-container">
+                                        <div id="progressbar"></div>
+                                        <div id="scrollpath"></div>
+                                    </div>  
+                                </div>
+                                <div id="profile" class="tab-content">
+                                    <div id="content" class="Content" onscroll="progressSetter">
+                                        <p style="color: graytext; padding-right: 25px">My Biography : my name is amry ramadhan prasetya, my friend called me amry </p>
+                                        <form class="col-nopad2" th:each="contact : ${Contact}">
+                                            <div class="form-group text-left text-uppercase ">   
+                                                <h4 th:text="${contact.nama}" class="form-control-label text-success bold">Judul profile</h4>
+                                                <h5 th:text="${contact.link}" class="form-control-label text-uppercase">periode-periode</h5>
+                                                <div name="Description" >
+                                                    <p class="desc-text text-none">Description bla bla bla</p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="education" class="tab-content">
+                                    <div id="content" class="Content" onscroll="progressSetter">
+                                        <form class="col-nopad2">
+                                            <div class="form-group text-left text-uppercase ">   
+                                                <h4 class="form-control-label text-success bold">Judul edukasi</h4><h5 class="form-control-label text-uppercase">periode-periode</h5>
+                                                <div name="Description" >
+                                                    <p class="desc-text text-none">Description bla bla bla</p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="plan" class="tab-content">
+                                    <div id="content" class="Content" onscroll="progressSetter">
+                                        <form class="col-nopad2">
+                                            <div class="form-group text-left text-uppercase ">   
+                                                <h4 class="form-control-label text-success bold">Judul plan</h4><h5 class="form-control-label text-uppercase">periode-periode</h5>
+                                                <div name="Description" >
+                                                    <p class="desc-text text-none">Description bla bla bla</p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="experience" class="tab-content">
+                                    <div id="content" class="Content" onscroll="progressSetter">
+                                        <form class="col-nopad2">
+                                            <div class="form-group text-left text-uppercase ">   
+                                                <h4 class="form-control-label text-success bold">Judul experience</h4><h5 class="form-control-label text-uppercase">periode-periode</h5>
+                                                <div name="Description" >
+                                                    <p class="desc-text text-none">Description bla bla bla</p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="skill" class="tab-content">
+                                    <div id="content" class="Content" onscroll="progressSetter">
+                                        <form class="col-nopad2">
+                                            <div class="form-group text-left text-uppercase ">   
+                                                <h4 class="form-control-label text-success bold">Judul skill</h4><h5 class="form-control-label text-uppercase">periode-periode</h5>
+                                                <div name="Description" >
+                                                    <p class="desc-text text-none">Description bla bla bla</p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-nopad2 blankpage">
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+</body>
+<script type="text/javascript">
+    let progress = document.getElementById('progressbar');
+    var contentscroll = document.getElementById('content');
+    contentscroll.onscroll = function () {
+        myFunction();
+    };
+    var maxcontentscroll = document.getElementById('FixedHeightContainer');
+    function myFunction() {
+        var winScroll = contentscroll.scrollTop || contentscroll.scrollTop;
+        var height = contentscroll.scrollHeight - contentscroll.clientHeight;
+        let progressHeight = (winScroll / height) * 97;
+        progress.style.height = progressHeight + "%";
+
+    }
+    ;
+    var $container = $('.FixedHeightContainer'),
+            $scroller = $container.find('.Content'),
+            $bar = $('#progressbar'),
+            progressSetter = function () {
+                var height = $scroller[0].scrollHeight - $scroller.outerHeight();
+
+                $bar.css({
+                    height: $scroller.scrollTop() / height * 100 + '%'
+                });
+                $scroller.on('scroll', progressSetter);
+            };
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+<script th:src="@{/js/login.js}"></script>
+<footer th:replace="footer :: footer"></footer>
+</html>
